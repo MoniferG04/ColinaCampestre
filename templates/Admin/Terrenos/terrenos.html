@@ -1,0 +1,45 @@
+{% extends 'Admin/home.html' %}
+{% load static %}
+
+{% block title %} Terrenos {%endblock %}
+
+
+{% block content %}
+
+<div class="producto">
+    <div class="card" style="flex-direction: row-reverse">
+        <a href="{% url 'Admin:creaTerreno' %}"><button type="button" class="btn btn-primary">Añadir
+                Terreno</button></a>
+    </div>
+
+    <div class="card" id="centro">
+        <div class="items">
+            {% for post in posts %}
+            <div class="cards">
+                <div class="cards1">
+                    <div class="picture">
+                        <img src="{% static 'img/CasaProvisional.jpg' %}" alt="" />
+                    </div>
+                    <div class="description">
+                        <div><a>N° Registro: {{post.matricula}}</a></div>
+                        <div><a>Dimensiones: {{post.largo}}m X {{post.ancho}}m</a></div>
+                        <div><a>Precio: ${{post.precio}}</a></div>
+                    </div>
+                    <div class="opcionesAdmin">
+                        <a href=""><img src="{% static 'img/editar.png' %}" alt="" /></a>
+                        <a href=""><img src="{% static 'img/delete.png' %}" alt="" /></a>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            {% endfor %}
+
+            
+        </div>
+    </div>
+    {% block modal %}{% endblock  %}
+</div>
+
+{% endblock %}
