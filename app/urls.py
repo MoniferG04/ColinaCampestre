@@ -8,6 +8,6 @@ urlpatterns  = [
     path('Admin/', InicioAView.as_view(), name="inicioAdmin"),
     path('Terrenos/', TerrenoView.as_view(), name="terrenos"),
     path('Servicios/', ServiciosView.as_view(), name="servicios"),
-    path('Create/', TerrenoCreateView.as_view(), name="creaTerreno")
+    path('Create/', TerrenoCreateView.as_view(), name="creaTerreno"),
 
 ]

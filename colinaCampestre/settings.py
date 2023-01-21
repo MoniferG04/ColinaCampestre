@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'colinaCampestre',
     'app', 
 
-    'bulma',
 
 ]
 
