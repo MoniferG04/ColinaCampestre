@@ -60,9 +60,26 @@ class TerrenoCreateView(View):
                 p, created = Lote.objects.get_or_create(
                     ancho=ancho, largo=largo, matricula=matricula, precio=precio, zona=zona, estado=estado, servicio=servicio)
                 p.save()
-                return redirect('Admin:inicioAdmin')
+                return redirect('Admin:terrenos')
         context = {
 
         }
-        return render(request, 'Admin/Terrenos/create.html', context)
+        return render(request, 'Admin/Terrenos/terrenos.html', context)
 
+
+class TerrenoEditView(View):
+    def get(self, request, *args, **kwargs):
+        posts = Lote.objects.all()
+        context = {
+            'posts': posts
+        }
+        return render(request, 'Admin/Terrenos/edit.html', context)
+
+
+class TerrenoDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        posts = Lote.objects.all()
+        context = {
+            'posts': posts
+        }
+        return render(request, 'Admin/Terrenos/delete.html', context)
