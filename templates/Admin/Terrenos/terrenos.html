@@ -26,8 +26,8 @@
                         <div><a>Precio: ${{post.precio}}</a></div>
                     </div>
                     <div class="opcionesAdmin">
-                        <a href=""><img src="{% static 'img/editar.png' %}" alt="" /></a>
-                        <a href=""><img src="{% static 'img/delete.png' %}" alt="" /></a>
+                        <button style="background: none ;border: none;" onclick="Abrir_modal_Edit('{% url 'Admin:editaTerreno' %}')"><img src="{% static 'img/editar.png' %}" alt="" /></button>
+                        <button style="background: none ;border: none;" onclick="Abrir_modal_Delete('{% url 'Admin:eliminaTerreno' %}')"><img src="{% static 'img/delete.png' %}" alt="" /></button>
                     </div>
                 </div>
             </div>
@@ -37,6 +37,8 @@
 </div>
 
 <div class="modal fade" id="crear" role="dialog"> </div>
+<div class="modal fade" id="editar" role="dialog"> </div>
+<div class="modal fade" id="eliminar" role="dialog"> </div>
 
 {% endblock %}
 
@@ -44,6 +46,18 @@
     <script type="text/javascript">
         function Abrir_modal_Crear(url){
             $('#crear').load(url, function(){
+                $(this).modal('show');
+            });
+        }
+
+        function Abrir_modal_Edit(url){
+            $('#editar').load(url, function(){
+                $(this).modal('show');
+            });
+        }
+
+        function Abrir_modal_Delete(url){
+            $('#eliminar').load(url, function(){
                 $(this).modal('show');
             });
         }

@@ -66,3 +66,20 @@ class TerrenoCreateView(View):
         }
         return render(request, 'Admin/Terrenos/terrenos.html', context)
 
+
+class TerrenoEditView(View):
+    def get(self, request, *args, **kwargs):
+        posts = Lote.objects.all()
+        context = {
+            'posts': posts
+        }
+        return render(request, 'Admin/Terrenos/edit.html', context)
+
+
+class TerrenoDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        posts = Lote.objects.all()
+        context = {
+            'posts': posts
+        }
+        return render(request, 'Admin/Terrenos/delete.html', context)
