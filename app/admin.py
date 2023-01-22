@@ -4,6 +4,6 @@ from .models import *
 admin.site.register((Persona,Reserva,Lote,Factura,Servicio))
 @admin.register(Usuario)
 class usuarioAdmin(admin.ModelAdmin):
-    list_display=('correo','contrasenna','rol',)
+    list_display=('email','password','rol',)
     list_filter=('rol',)
-    search_fields=('correo',)
+    search_fields=('email',)

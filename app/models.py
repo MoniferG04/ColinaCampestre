@@ -6,8 +6,9 @@ class Usuario(models.Model):
     ROL=(('Propietario','Propietario'),('Cliente','Cliente'),("Administrador","Administrador"))
     ESTADO=(('Activo','Activo'),('Bloqueado','Bloqueado'))
     id_usuario=models.AutoField(primary_key=True)
-    correo=models.EmailField()
-    contrasenna=models.CharField(max_length=25)
+    username=models.TextField()
+    email=models.EmailField()
+    password=models.CharField(max_length=25)
     rol=models.CharField(max_length=13,choices=ROL)
     estado=models.CharField(max_length=11,choices=ESTADO)
     def __str__(self):
