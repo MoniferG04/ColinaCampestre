@@ -8,8 +8,8 @@
 
 <div class="producto">
     <div class="card" style="flex-direction: row-reverse">
-        <a href="{% url 'Admin:creaTerreno' %}"><button type="button" class="btn btn-primary">Añadir
-                Terreno</button></a>
+        <button type="button" class="btn btn-primary" onclick="Abrir_modal_Crear('{% url 'Admin:creaTerreno' %}')">Añadir
+                Terreno</button>
     </div>
 
     <div class="card" id="centro">
@@ -31,15 +31,23 @@
                     </div>
                 </div>
             </div>
-
-            
-
-            {% endfor %}
-
-            
+            {% endfor %}            
         </div>
     </div>
-    {% block modal %}{% endblock  %}
 </div>
 
+<div class="modal fade" id="crear" role="dialog"> </div>
+
 {% endblock %}
+
+{% block ExtraJS %}
+    <script type="text/javascript">
+        function Abrir_modal_Crear(url){
+            $('#crear').load(url, function(){
+                $(this).modal('show');
+            });
+        }
+        
+    </script>
+
+{% endblock ExtraJS %}
