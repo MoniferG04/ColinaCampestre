@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from app.forms import RegisterForm
-from app.models import Usuario
 
 
 class HomeView(View):
@@ -43,12 +42,10 @@ class LoginView(View):
 
 
 class signoutView(View):
-    def signout(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
+        print('perra')
         logout(request)
-        context = {
-
-        }
-        return render(request, 'index.html', context)
+        return redirect('home')
 
 
 class RegistreView(View):

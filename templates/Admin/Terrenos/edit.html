@@ -5,7 +5,8 @@
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                     aria-hidden="true">&times;</span></button>
         </div>
-        <form method="POST" action="{% url 'Admin:editaTerreno' %}">
+        <form method="POST" action="{% url 'Admin:editaTerreno' object.id_lotes%}">
+            
             {% csrf_token %}
             <div class="modal-body">
 

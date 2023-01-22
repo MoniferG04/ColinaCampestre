@@ -9,7 +9,7 @@ urlpatterns = [
     path('',include('app.urls', namespace='Admin')),
     path('Login/', LoginView.as_view(), name="login"),
     path('Registro/', RegistreView.as_view(), name="Registro"),
-    path('Logout',signoutView.as_view(), name="Cerrar"),
+    path('Logout/',signoutView.as_view(), name="Cerrar"),
 
 
 
