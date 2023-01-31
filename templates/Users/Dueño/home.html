@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    {% csrf_token %}
+    <div class="producto">
+        <div class="card" id="centro">
+            <div class="items">
+                {% for post in posts %}
+                <div class="cards">
+                    <div class="cards1">
+                        <div class="picture">
+                            <img src="{% static 'img/CasaProvisional.jpg' %}" alt="" />
+                        </div>
+                        <div class="description">
+                            <div><a>Tipo: {{post.tipo}}</a></div>
+                            <div><a>Precio: ${{post.precio}}</a></div>
+                        </div>
+                        <div class="opcionesAdmin">
+                            <button> Reservar</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}            
+            </div>
+        </div>
+    </div>
+    Dueño
+  </body>
+</html>

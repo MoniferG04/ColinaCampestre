@@ -1,0 +1,101 @@
+{% load static %}
+<!-- Modal Login-->
+<div class="modal fade" id="login" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header modalhead">
+          <img class="modal-banner" width="200px" src="{% static 'img/logo2.png' %}"/>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body px-6 flex flex-column  align-items-center">
+          <h1 class="modal-title text-xl" id="exampleModalLabel"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</h1>
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name-log" class="col-form-label font-semibold"><i class="fas fa-user"></i> Email</label>
+              <input type="email" class="form-control" id="recipient-name-log" placeholder="Email" required>
+            </div>
+            <div class="mb-3">
+              <label for="pass-text-log" class="col-form-label font-semibold"><i class="fas fa-unlock-alt"></i> Contraseña:</label>
+              <input type="password" class="form-control" id="pass-text-log" placeholder="Contraseña" required>
+            </div>
+            <div class="flex justify-content-center align-items-center">
+              <button type="submit" class="btn-enviar"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</button>
+            </div>
+          </form>
+        </div>
+        <div class="flex justify-content-end pr-6">
+          <p class="pr-1">No tienes una cuenta?</p><a class="text-gray-700 transition-colors hover:text-blue-900 font-semibold cursor-pointer" data-bs-toggle="modal" data-bs-target="#registro">Registrarse</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Registro-->
+  <div class="modal fade" id="registro" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header modalhead">
+            <img class="modal-banner" width="200px" src="{% static 'img/logo2.png' %}"/>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body px-6 flex flex-column  align-items-center">
+            <h1 class="modal-title text-xl" id="exampleModalLabel"><i class="fas fa-clipboard-check"></i> Registrarse</h1>
+            <form>
+              <div>
+                <label for="recipient-email" class="col-form-label font-semibold text-sm"><i class="fas fa-at"></i> Email</label>
+                <input type="email" class="form-control" id="recipient-email" placeholder="Email" required>
+              </div>
+              <div class="grid grid-nogutter">
+                  <div class="col-6 mr-5">
+                      <label for="recipient-name" class="col-form-label font-semibold text-sm"><i class="fas fa-user"></i> Nombre</label>
+                      <input type="text" class="form-control" id="recipient-name" placeholder="Nombre" required>
+                    </div>
+                    <div class="col-5">
+                      <label for="recipient-tel" class="col-form-label font-semibold text-sm"><i class="fa fa-phone"></i> Teléfono</label>
+                      <input type="tel" class="form-control" id="recipient-tel" placeholder="Teléfono" required>
+                    </div>
+              </div>
+              <div>
+                <label for="pass-text" class="col-form-label font-semibold text-sm"><i class="fas fa-lock"></i> Contraseña:</label>
+                <input type="password" class="form-control" id="pass-text" placeholder="Contraseña" required>
+              </div>
+              <div class="mb-2">
+                  <label for="pass-text-conf" class="col-form-label font-semibold text-sm"><i class="fas fa-lock-open"></i> Confirmar Contraseña:</label>
+                  <input type="password" class="form-control" id="pass-text-conf" placeholder="Confirmar Contraseña" required>
+                </div>
+              <div class="flex justify-content-center align-items-center">
+                <button type="submit" class="btn-enviar"><i class="fas fa-clipboard-check"></i> Registrarse</button>
+              </div>
+            </form>
+          </div>
+          <div class="flex justify-content-end pr-6">
+            <p class="pr-1">Ya tienes una cuenta?</p><a class="text-gray-700 transition-colors hover:text-blue-900 font-semibold cursor-pointer" data-bs-toggle="modal" data-bs-target="#login">Iniciar sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <!-- Alerta Registrarse-->
+  <div class="modal fade" id="alert_login" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header modalhead">
+          <img class="modal-banner" width="200px" src="{% static 'img/logo2.png' %}"/>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  var login = 'falso'
+
+if(login == "true"){
+  if(estado == "reservado" || estado == "vendido"){
+    document.getElementById('reservar').disabled=true;
+  }else if(login == "falso"){
+    console.log("debe logearse");
+}
+}
+</script>

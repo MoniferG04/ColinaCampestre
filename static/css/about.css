@@ -1,0 +1,109 @@
+.banner_about{
+    background: url("/static/img/baner.jpg");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    height: 300px;
+    width: 100%;
+}
+
+.info-banner{
+    background: linear-gradient(90deg, rgba(25, 145, 14, 0.836) 50%, rgba(172, 172, 172, 0) 100%);
+    border-radius: 50px;
+    padding: 18px;
+    box-shadow: 0 1px 10px rgba(0,0,0,1);
+}
+
+.section2_acerca_de{
+    height: 100vh;
+}
+
+.img_about{
+    width: 70%;
+    box-shadow: 3px 5px 5px rgba(3, 32, 51, .8);
+}
+
+
+/* Tarjetas*/
+
+.carta{
+    width: 350px;
+    height: 250px;
+    margin-bottom: 10px ;
+    border-radius: 5px;
+    background: var(--i);
+    background-size: cover;
+    box-shadow: 3px 5px 5px rgba(3, 32, 51, .8);
+}
+
+.content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: .5s;
+}
+
+.carta:hover .content{
+    opacity: 1;
+}
+
+@media screen and (max-width: 800px){
+    .banner_about{
+        height: 350px;
+    }
+
+    .img_ubicacion{
+        width: 70%;
+    }
+
+    .section2_acerca_de{
+        height: 70vh;
+    }
+}
+
+@media screen and (min-width: 765px){
+
+    .img_about{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 801px){
+
+    .banner_about{
+        height: 350px;
+    }
+
+    .img_ubicacion{
+        width: 600px;
+    }
+    
+}
+
+@media screen and (min-width: 1000px){
+
+    .banner_about{
+        height: 300px;
+    }
+
+    .img_ubicacion{
+        width: 800px;
+    }
+
+    .img_about{
+        width: 90%;
+    }
+    
+}
+
+@media screen and (min-width: 1400px){
+
+    .img_ubicacion{
+        width: 1000px;
+    }
+
+}

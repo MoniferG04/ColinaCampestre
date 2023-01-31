@@ -1,0 +1,49 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="banner_about">
+    <div class="px-8">
+        <article class="block md:flex md:justify-content-between align-items-center">
+            <h1 class="text-4xl md:text-6xl text-blue-900 md:w-5 pt-4">¿Qué es Colina Campestre?</h1>
+            <p class="info-banner text-sm md:text-lg text-white md:w-5">
+                Estamos prestos a brindar toda la información que requieras y lo mas importante a escuchar tus ofertas para que asi juntos logremos grandes cosas.
+            </p>
+        </article>
+    </div>
+</div>
+
+<div class="bg-white grid grid-nogutter pb-5">
+    <div class="px-8 py-4 col-12 md:col-6 flex flex-column">
+        <p class="text-base md:text-lg text-gray-900">
+            Colina Campestre mas que solo un condominio busca brindar a las personas un lugar inmerso en naturaleza sin perjudicar la misma. Contamos con zonas protegidas así como zonas sociales para la comodidad de cada uno de los propietarios.
+        </p>
+        <br>
+        <p class="text-base md:text-lg  w-full text-gray-900">
+            Ofrecemos lotes con servicios para que puedas construir tu casa soñada en el mejor lugar, alejado del bullicio de la ciudad y con la mejor planeación para que así puedas vivir con la mayor comodidad posible.
+        </p>
+    </div>
+    <div class="col-12 md:col-6 flex justify-content-center pt-4 h-full">
+        <img src="{% static 'img/img8.jpg'%}" height="300px" alt="" class="img_section4">
+    </div>
+</div>
+
+<div class="bg-gray-100 flex flex-column justify-content-center align-items-center py-4">
+    <h1 class="text-blue-900 text-center">Colina Campestre es uno con la Naturaleza</h1>
+    <div class="grid grid-nogutter p-2 px-8 align-items-center justify-content-center">
+        <img src="{% static 'img/img6.jpg'%}" width="250px" alt="" class="col-12 md:col-4 p-2">
+        <img src="{% static 'img/img2.jpg'%}" width="250px" alt="" class="col-12 md:col-4 p-2">
+        <img src="{% static 'img/img5.jpg'%}" width="250px" alt="" class="col-12 md:col-4 p-2">
+        <img src="{% static 'img/img3.jpg'%}" width="250px" alt="" class="col-12 md:col-4 p-2">
+        <img src="{% static 'img/img1.jpg'%}" width="250px" alt="" class="col-12 md:col-4 p-2">
+        <img src="{% static 'img/img7.jpg'%}" width="250px" alt="" class="col-12 md:col-4 p-2">
+    </div>
+</div>
+
+<div class="section2_acerca_de flex flex-column justify-content-center align-items-center bg-white md:py-8">
+    <h1 class="md:text-center text-5xl text-blue-900">Ubicación</h1>
+    <img src="{% static 'img/img9.jpg'%}" height="500px" alt="ubicacion" class="img_ubicacion">
+</div>
+
+{% include 'layouts/partials/footer.html' %}
+{% endblock  %}

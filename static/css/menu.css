@@ -1,0 +1,90 @@
+nav{
+    height: 90px;
+    background: #CAEAF7;  
+}
+
+.selected{
+    padding: 10px 20px;
+    background-color:#FD8951;
+    border-radius: 10px;
+}
+
+nav img{
+    width: 200px;
+}
+
+#menu{
+    display: flex;
+    list-style-type: none;
+    gap: 25px;
+}
+
+nav ul li a{
+    color: #000000;
+    --clippy: polygon(0 0, 0 0, 0 98%, 0% 100%);
+}
+
+nav ul li a::after{
+    content: "";
+    display: block;
+    background: #1F5DAA;
+    width: 100%;
+    margin-top: 3px;
+    height: 3px;
+    clip-path: var(--clippy);
+    transition: clip-path .3s;
+}
+
+nav ul li a:hover{
+    --clippy: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    color: #1F5DAA;
+}
+
+.login-btn{
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color:#FD8951;
+    color: white;
+    border-radius: 10px;
+    font-size: 1rem;
+    box-shadow: 0 1px 10px rgba(0,0,0,1);
+}
+
+.login-btn:hover{
+    background-color: #1F5DAA;
+}
+
+
+@media screen and (max-width: 800px){
+    
+    #menu{
+        z-index: 1;
+        position: absolute;
+        width: 100%;
+        background:  #CAEAF7;  
+        top: 90px;
+        left: 0;
+        display: flex;
+        justify-content: start;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        transition: all .5s;
+        clip-path: circle(0 at center);
+        transition: clip-path .3s ease-in-out;
+        border-bottom: 2px solid #1F5DAA;
+    }
+
+    li{
+        display: block;
+        justify-content: center;
+    }
+    
+    #check:checked ~ #menu{
+        
+        clip-path: circle(100% at center);
+    }
+}
+
+

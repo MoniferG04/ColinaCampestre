@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from app.forms import RegisterForm
+from app.models import Lote
 
 
 class HomeView(View):
@@ -13,6 +14,20 @@ class HomeView(View):
 
         }
         return render(request, 'index.html', context)
+
+class AboutView(View):
+    def get(self, request, *args, **kwargs):
+        context = {
+
+        }
+        return render(request, 'about.html', context)
+
+class ContactoView(View):
+    def get(self, request, *args, **kwargs):
+        context = {
+
+        }
+        return render(request, 'contacto.html', context)
 
 
 class LoginView(View):
@@ -35,15 +50,19 @@ class LoginView(View):
                   }
                 return render(request, 'login.html', context)
             else: 
-                login(request,user)
-                return redirect('Admin:inicioAdmin')
+                if (request.POST['username']=='ColinaCampestre'): 
+                    login(request,user)
+                    return redirect('Admin:inicioAdmin')
+                else:
+                    if (request.POST['username']=='FreinderMatoma'): 
+                        login(request,user)
+                        return redirect('Admin:inicioDueño')
+                    else:
+                        login(request,user)
+                        return redirect('Admin:inicioUsuario')
            
-
-
-
 class signoutView(View):
     def get(self, request, *args, **kwargs):
-        print('perra')
         logout(request)
         return redirect('home')
 
@@ -87,3 +106,12 @@ class RegistreView(View):
             #        'form': UserCreationForm,
             #       "error": 'Datos invalidos'
             #   })
+
+class InfoView(View):
+    def get(self,request, id ,*args, **kwargs):
+        lote = Lote.objects.get(id_lotes=id)
+        return render(request, 'response.html',{'lote':lote})
+
+class error404(View):
+    def get(self, request, exception ,*args, **kwargs):
+        return render(request,'error404.html',{})

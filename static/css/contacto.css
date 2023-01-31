@@ -1,0 +1,40 @@
+.banner_contacto{
+    background: url("/static/img/baner.jpg");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    height: 10vh;
+    width: 100%;
+}
+
+form{
+    width: 100%;
+}
+
+.campo,textarea{
+    width: 70%;
+    padding: 15px 10px;
+    font-size: 15px;
+    border: 1px solid #7e7e7e;
+    margin-bottom: 10px;
+    outline: 0px;
+    border-radius: 5px;
+}   
+
+.btn-enviar{
+    border: none;
+    padding: 15px;
+    width: 70%;
+    background: #FD8951;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 0 1px 10px rgba(0,0,0,1);
+}
+
+.btn-enviar:hover{
+    background-color: #0d3c61;
+}
+

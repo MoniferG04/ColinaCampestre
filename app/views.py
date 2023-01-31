@@ -21,13 +21,20 @@ class ServiciosView(View):
         }
         return render(request, 'Admin/Servicios/servicios.html', context)
 
+class InicioDView(View):
+    def get(self, request, *args, **kwargs):
+        posts = Servicio.objects.all()
+        context = {
+            'posts':posts
+        }
+        return render(request, 'Users/Dueño/home.html', context)
 
 class InicioUView(View):
     def get(self, request, *args, **kwargs):
         context = {
 
         }
-        return render(request, 'Users/home.html', context)
+        return render(request, 'Users/Cliente/home.html', context)
 
 
 class TerrenoView(View):
@@ -123,3 +130,4 @@ class ServiciosDeleteView(DeleteView):
     model = Servicio
     template_name='Admin/Servicios/delete.html'
     success_url=reverse_lazy('Admin:servicios')
+
