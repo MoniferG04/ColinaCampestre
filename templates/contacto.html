@@ -4,53 +4,47 @@
 {% block content %}
     <div class="flex justify-content-center align-items-center banner_contacto">
         <article>
-            <h1 class="text-4xl md:text-6xl text-blue-900">Contacto</h1>
+            <h1 class="text-4xl md:text-6xl text-blue-900 font-semibold">Contacto</h1>
         </article>
     </div>
 
-<div class="grid grid-nogutter px-4 md:px-8 py-4 mt-2 bg-white justify-content-center text-gray-800">
+<div class="grid grid-nogutter px-4 md:px-8 py-4 mt-2 justify-content-center text-gray-800 bg-white">
     <div class="col-12 md:col-5">
-        <div class="py-2">
-            <h2 class="pb-2">Oficina</h2>
+        <div class="py-1">
+            <h2 class="text-xl font-semibold">Oficina</h2>
             <div class="flex align-items-center">
-                <img src="{% static 'img/icono8.png'%}" height="25px" alt="">
-                <p class="md:text-lg pl-2">Cra 14 # 13-76 (frente al parque principal)</p>
+                <p class="md:text-lg pl-2"><i class="fas fa-thumbtack"></i> Cra 14 # 13-76 (frente al parque principal)</p>
             </div>
         </div>
-        <div class="py-2">
-            <h2 class="pb-2">Teléfono</h2>
+        <div class="py-1">
+            <h2 class="text-xl font-semibold">Teléfono</h2>
             <div class="flex align-items-center">
-                <img src="{% static 'img/icono9.png'%}" height="25px" alt="">
-                <p class="md:text-lg pl-2">3114438800</p>
+                <p class="md:text-lg pl-2"><i class="fa fa-phone"></i> 3114438800</p>
             </div>
         </div>
-        <div class="py-2">
-            <h2 class="pb-2">Email</h2>
+        <div class="py-1">
+            <h2 class="text-xl font-semibold">Email</h2>
             <div>
-                <div class="flex flex-column">
-                    <div class="flex align-items-center pb-2">
-                        <img src="{% static 'img/icono10.png'%}" height="25px" alt="">
-                        <p class="md:text-lg pl-2"> contacto@colinacampestreacacias.com
+                <div class="flex flex-column overflow-auto">
+                    <div class="flex align-items-center">
+                        <p class="md:text-lg pl-2"><i class="fas fa-envelope"></i> contacto@colinacampestreacacias.com
                             </p>
                     </div>
                     <div class="flex align-items-center">
-                        <img src="{% static 'img/icono11.png'%}" height="25px" alt="">
-                        <p class="md:text-lg pl-2"> soporte@colinacampestreacacias.com</p>
+                        <p class="md:text-lg pl-2"><i class="fas fa-user-cog"></i> soporte@colinacampestreacacias.com</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="py-2">
-            <h2 class="pb-2">Horario</h2>
+        <div class="py-1">
+            <h2 class="text-xl font-semibold">Horario</h2>
             <div>
                 <div class="flex flex-column">
-                    <div class="flex align-items-center pb-2">
-                        <img src="{% static 'img/icono12.png'%}" height="25px" alt="">
-                        <p class="md:text-lg pl-2"> Lunes - Viernes  8am - 5pm</p>
+                    <div class="flex align-items-center">
+                        <p class="md:text-lg pl-2"><i class="fas fa-calendar-alt"></i> Lunes - Viernes  8am - 5pm</p>
                     </div>
                     <div class="flex align-items-center">
-                        <img src="{% static 'img/icono12.png'%}" height="25px" alt="">
-                        <p class="md:text-lg pl-2"> Sabado           8am - 3pm</p>
+                        <p class="md:text-lg pl-2"><i class="fas fa-calendar-alt"></i> Sabado           8am - 3pm</p>
                     </div>
                 </div>
             </div>
@@ -58,13 +52,13 @@
     </div>
 
     <div class="col-12 md:col-5 bg-blue-100 flex flex-column justify-content-center align-items-center mt-4 md:mt-0 p-4">
-        <h2 class="pb-2 text-blue-900">Envíanos un mensaje</h2>
+        <h2 class="pb-2 text-blue-900 font-semibold text-center">Envíanos un mensaje</h2>
         <form action="" autocomplete="off" class="flex flex-column justify-content-center align-items-center">
-            <input type="text" placeholder="Nombre" class="campo">
+            <input type="text" placeholder="Nombre" class="campo" required>
             <input type="tel" placeholder="Teléfono" class="campo">
             <input type="email" placeholder="Email" class="campo">
             <textarea placeholder="Mensaje"></textarea>
-            <input type="submit" value="Enviar" class="btn-enviar">
+            <button type="submit" class="btn-enviar"><i class="fas fa-paper-plane"></i> Enviar</button>
         </form>
     </div>
 </div>

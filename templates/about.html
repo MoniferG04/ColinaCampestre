@@ -4,9 +4,9 @@
 {% block content %}
 <div class="banner_about">
     <div class="px-8">
-        <article class="block md:flex md:justify-content-between align-items-center">
-            <h1 class="text-4xl md:text-6xl text-blue-900 md:w-5 pt-4">¿Qué es Colina Campestre?</h1>
-            <p class="info-banner text-sm md:text-lg text-white md:w-5">
+        <article class="md:flex md:justify-content-between align-items-center">
+            <h1 class="texto text-4xl md:text-6xl text-blue-900 md:w-5 pt-4 font-semibold">¿Qué es Colina Campestre?</h1>
+            <p class="texto info-banner text-sm md:text-lg text-white md:w-5 md:mt-6">
                 Estamos prestos a brindar toda la información que requieras y lo mas importante a escuchar tus ofertas para que asi juntos logremos grandes cosas.
             </p>
         </article>
@@ -24,25 +24,49 @@
         </p>
     </div>
     <div class="col-12 md:col-6 flex justify-content-center pt-4 h-full">
-        <img src="{% static 'img/img8.jpg'%}" height="300px" alt="" class="img_section4">
+        <img src="{% static 'img/img8.jpg'%}"  alt="" class="img_about">
     </div>
 </div>
 
 <div class="bg-gray-100 flex flex-column justify-content-center align-items-center py-4">
-    <h1 class="text-blue-900 text-center">Colina Campestre es uno con la Naturaleza</h1>
-    <div class="grid grid-nogutter p-2 px-8 align-items-center justify-content-center">
-        <img src="{% static 'img/img6.jpg'%}" width="250px" alt="" class="col-12 md:col-4 p-2">
-        <img src="{% static 'img/img2.jpg'%}" width="250px" alt="" class="col-12 md:col-4 p-2">
-        <img src="{% static 'img/img5.jpg'%}" width="250px" alt="" class="col-12 md:col-4 p-2">
-        <img src="{% static 'img/img3.jpg'%}" width="250px" alt="" class="col-12 md:col-4 p-2">
-        <img src="{% static 'img/img1.jpg'%}" width="250px" alt="" class="col-12 md:col-4 p-2">
-        <img src="{% static 'img/img7.jpg'%}" width="250px" alt="" class="col-12 md:col-4 p-2">
+    <h1 class="text-blue-900 text-center font-semibold">Colina Campestre es uno con la Naturaleza</h1>
+    <div class="flex flex-wrap justify-content-evenly mt-4 w-10">
+        <div class="carta" style="--i:url(/static/img/img6.jpg)">
+            <div class="content">
+                <h2 class="text-white font-semibold text-3xl">Naturaleza</h2>
+            </div>
+        </div>
+        <div class="carta" style="--i:url(/static/img/img2.jpg)">
+            <div class="content">
+                <h2 class="text-white font-semibold text-3xl">Fuentes Hídricas</h2>
+            </div>
+        </div>
+        <div class="carta" style="--i:url(/static/img/img5.jpg)">
+            <div class="content">
+                <h2 class="text-white font-semibold text-3xl">Bosques protegidos</h2>
+            </div>
+        </div>
+        <div class="carta" style="--i:url(/static/img/img3.jpg)">
+            <div class="content">
+                <h2 class="text-white font-semibold text-3xl">Excelente vista</h2>
+            </div>
+        </div>
+        <div class="carta" style="--i:url(/static/img/img1.jpg)">
+            <div class="content">
+                <h2 class="text-white font-semibold text-3xl">Paisajes</h2>
+            </div>
+        </div>
+        <div class="carta" style="--i:url(/static/img/img7.jpg)">
+            <div class="content">
+                <h2 class="text-white font-semibold text-3xl">Zona de Camping</h2>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="section2_acerca_de flex flex-column justify-content-center align-items-center bg-white md:py-8">
-    <h1 class="md:text-center text-5xl text-blue-900">Ubicación</h1>
-    <img src="{% static 'img/img9.jpg'%}" height="500px" alt="ubicacion" class="img_ubicacion">
+<div class="section2_acerca_de flex flex-column justify-content-center align-items-center bg-white w-full md:py-4">
+    <h1 class="md:text-center text-5xl text-blue-900 font-semibold">Ubicación</h1>
+    <img src="{% static 'img/img9.jpg'%}" alt="ubicacion" class="img_ubicacion">
 </div>
 
 {% include 'layouts/partials/footer.html' %}

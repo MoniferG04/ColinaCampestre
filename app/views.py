@@ -7,8 +7,9 @@ from .models import Lote, Servicio
 
 class InicioAView(View):
     def get(self, request, *args, **kwargs):
+        lotes=Lote.objects.all()
         context = {
-
+            'lotes': lotes,
         }
         return render(request, 'Admin/home.html', context)
 

@@ -109,9 +109,13 @@ class RegistreView(View):
 
 class InfoView(View):
     def get(self,request, id ,*args, **kwargs):
-        lote = Lote.objects.get(id_lotes=id)
+        try:
+            lote = Lote.objects.get(id_lotes=id)
+        except:
+            lote=Lote()
         return render(request, 'response.html',{'lote':lote})
 
 class error404(View):
-    def get(self, request, exception ,*args, **kwargs):
+    def get(self, request, *args, **kwargs):
         return render(request,'error404.html',{})
+

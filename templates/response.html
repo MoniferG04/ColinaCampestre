@@ -1,12 +1,11 @@
-
-<div class="modal-dialog  modal-md" role=" document">
+<!-- MODAL DESCRIPCION-->
+<div class="modal-dialog modal-dialog-centered modal-md" role=" document">
       <div class="modal-content">
         <div class="modal-header bg-blue-900">
-          <h1 class="modal-title fs-5 font-bold text-white" id="exampleModalLabel">Colina Campestre Acacias</h1>
+          <h3 class="text-center text-lg text-white font-semibold"><i class="fas fa-file-alt"></i> Descripción</h3>
           <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <h3 class="text-center text-lg"><i class="fas fa-file-alt"></i> Descripción</h3>
           <ul class="flex flex-column border-400 border-1 px-2">
             <li class="w-full border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-fingerprint"></i> Id</b><span>{{lote.id_lotes }}</span></li>
             <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-address-card"></i> Matricula</b><span>{{lote.id_lotes }}</span></li>
@@ -16,12 +15,11 @@
             <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fas fa-ruler-combined"></i> Tamaño(m<sup>2</sup>)</b><span id="tamaño"></span></li>
             <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fad fa-dollar-sign"></i> Precio</b><span id="precio">800000000</span></li>
             <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fad fa-dollar-sign"></i> Precio m<sup>2</sup></b><span id="preciom"></span></li>
-            <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fas fa-toggle-on"></i> Estado</b><span>{{lote.estado }}</span></li>
+            <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fas fa-toggle-on"></i> Estado</b><span id="estado">{{lote.estado }}</span></li>
           </ul>
         </div>
-        <div class="modal-footer bg-gray-200">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Reservar</button>
+        <div class="flex justify-content-center align-items-center pb-4">
+          <button type="button" id="reservar" data-bs-dismiss="modal" class="btn-enviar w-5" onclick="alert()"><i class="fas fa-check-circle"></i> Reservar</button>
         </div>
       </div>
 </div>
@@ -30,10 +28,28 @@
   var ancho = document.getElementById('ancho').innerHTML
   var largo = document.getElementById('largo').innerHTML
   var precio = document.getElementById('precio').innerHTML
+  var estado = document.getElementById('estado').innerHTML
 
   document.getElementById('tamaño').innerHTML=(ancho*largo);
   var tamaño = document.getElementById('tamaño').innerHTML
   document.getElementById('preciom').innerHTML=((precio/tamaño).toFixed(2));
+
+
+  function alert(){
+    const sesion = 'true';
+
+    if(sesion == 'true'){
+      if(estado == "reservado" || estado == "vendido"){
+      document.getElementById('h1').innerHTML=estado;
+      $('#alert_estado').modal('show');
+    }else{
+      $('#reservacion').modal('show');
+    }
+    }else{
+      $('#alert_login').modal('show');
+    }
+  }
   
 </script>
+
 
