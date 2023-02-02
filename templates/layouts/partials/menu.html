@@ -12,7 +12,21 @@
         <li><a class="no-underline text-lg font-semibold" href="{% url 'about' %}">Acerca de</a></li>
         <li><a class="no-underline text-lg font-semibold" href="{% url 'contacto' %}">Contacto</a></li>
         <div class="justify-content-end md:pr-8">
-            <a class="login-btn font-semibold" data-bs-toggle="modal" data-bs-target="#login" ><i class="fas fa-sign-in-alt"></i> Acceder</a>
+            <a class="login-btn font-semibold" onclick="Abrir_modal_login('{% url 'login' %}')" ><i class="fas fa-sign-in-alt"></i> Acceder</a>
         </div>
     </ul>
 </nav>    
+<div class="modal fade" id="login" role="dialog"> </div>
+{% block scripts %}
+    <script type="text/javascript">
+        function Abrir_modal_login(url){
+            $('#login').load(url, function(){
+                console.log("hola")
+                $(this).modal('show');
+            });
+        }
+
+        
+    </script>
+
+{% endblock scripts %}

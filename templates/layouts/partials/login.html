@@ -1,22 +1,24 @@
 {% load static %}
 <!-- Modal Login-->
-<div class="modal fade" id="login" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog modal-lg" role=" document">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header modalhead">
           <img class="modal-banner" width="200px" src="{% static 'img/logo2.png' %}"/>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+        </div> 
         <div class="modal-body px-6 flex flex-column  align-items-center">
           <h1 class="modal-title text-xl" id="exampleModalLabel"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</h1>
-          <form>
+          <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            
             <div class="mb-3">
-              <label for="recipient-name-log" class="col-form-label font-semibold"><i class="fas fa-user"></i> Email</label>
-              <input type="email" class="form-control" id="recipient-name-log" placeholder="Email" required>
+              <label for="recipient-name-log" class="col-form-label font-semibold"><i class="fas fa-user"></i> Username: </label>
+              <input type="text" name="username"class="form-control" id="recipient-name-log" placeholder="Nombre" required>
             </div>
             <div class="mb-3">
               <label for="pass-text-log" class="col-form-label font-semibold"><i class="fas fa-unlock-alt"></i> Contraseña:</label>
-              <input type="password" class="form-control" id="pass-text-log" placeholder="Contraseña" required>
+              <input type="password" name="password"class="form-control" id="pass-text-log" placeholder="Contraseña" required>
             </div>
             <div class="flex justify-content-center align-items-center">
               <button type="submit" class="btn-enviar"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</button>
@@ -24,12 +26,23 @@
           </form>
         </div>
         <div class="flex justify-content-end pr-6">
-          <p class="pr-1">No tienes una cuenta?</p><a class="text-gray-700 transition-colors hover:text-blue-900 font-semibold cursor-pointer" data-bs-toggle="modal" data-bs-target="#registro">Registrarse</a>
+          <p class="pr-1">No tienes una cuenta?</p><a class="text-gray-700 transition-colors hover:text-blue-900 font-semibold cursor-pointer" onclick="Abrir_modal_Registro('{% url 'Registro' %}')">Registrarse</a>
         </div>
       </div>
     </div>
   </div>
-  
+  <div class="modal fade" id="registro" role="dialog"> </div>
+
+    {% block scripts %}
+        <script type="text/javascript">
+            function Abrir_modal_Registro(url){
+                $('#registro').load(url, function(){
+                    $(this).modal('show');
+                });
+            }
+        </script>
+
+    {% endblock scripts %}
 
   <!-- Alerta Ocupado-->
   <div class="modal fade" id="alert_estado" tabindex="-1" aria-hidden="true">

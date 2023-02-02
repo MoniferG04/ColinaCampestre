@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.forms import ModelForm
 from .models import Lote, Servicio
 
@@ -26,6 +26,18 @@ class RegisterForm(UserCreationForm):
         labels = {
             'username': 'Nombre de usuario',
             'email': 'correo',
+        }
+
+class LoginForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'password',
+        ]
+        labels = {
+            'username': 'Nombre de usuario',
+            'password': 'password',
         }
 
 class TerrenoForm(ModelForm):

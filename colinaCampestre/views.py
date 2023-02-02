@@ -37,7 +37,7 @@ class LoginView(View):
         context = {
             'form': form
         }
-        return render(request, 'login.html', context)
+        return render(request, 'layouts/partials/login.html', context)
 
     def post(self, request, *args, **kwargs):
         form = AuthenticationForm()
@@ -70,11 +70,11 @@ class signoutView(View):
 
 class RegistreView(View):
     def get(self, request, *args, **kwargs):
-        form = RegisterForm
+        form = RegisterForm()
         context = {
             'form': form
         }
-        return render(request, 'Registro.html', context)
+        return render(request, 'layouts/partials/registro.html', context)
 
     def post(self, request, *args, **kwargs):
         if request.method == "POST":
@@ -90,16 +90,16 @@ class RegistreView(View):
                     user.save()
                     # p.save()
                     login(request, user)
-                    return redirect('Admin:inicioAdmin')
+                    return redirect('home')
                 except IntegrityError:
                     return render(request, 'Registro.html', {
-                        'form': UserCreationForm,
+                        'form': UserCreationForm(),
                         "error": 'Usuario ya existe'
                     })
                     # return HttpResponse('Usuario ya existe')
 
             return render(request, 'Registro.html', {
-                'form': UserCreationForm,
+                'form': UserCreationForm(),
                 "error": 'Contraseñas no coinciden'
             })
             # return HttpResponse('Contraseñas no coinciden')
