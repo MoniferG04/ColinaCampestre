@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from app.forms import RegisterForm
-from app.models import Lote
+from app.models import Lote, Usuario
 
 
 class HomeView(View):
@@ -44,6 +44,7 @@ class LoginView(View):
         if request.method == "POST":
             user = authenticate(
                 request, username=request.POST['username'], password=request.POST['password'])
+            usuario = Usuario.objects.get(username=request.POST['username'], password=request.POST['password'])
             if user is None:
                 context = {
                     'form': form,
@@ -51,11 +52,11 @@ class LoginView(View):
                   }
                 return render(request, 'login.html', context)
             else: 
-                if (request.POST['username']=='ColinaCampestre'): 
+                if (usuario.rol=='Administrador'): 
                     login(request,user)
                     return redirect('Admin:inicioAdmin')
                 else:
-                    if (request.POST['username']=='FreinderMatoma'): 
+                    if (usuario.rol=="Propietario"): 
                         login(request,user)
                         return redirect('Admin:inicioDueño')
                     else:
@@ -88,8 +89,14 @@ class RegistreView(View):
                                                     password=request.POST['password1'],
                                                     )
                     user.save()
-                    # p.save()
                     login(request, user)
+                    p, created = Usuario.objects.get_or_create(username=request.POST['username'],
+                                                    email=request.POST['email'],
+                                                    password=request.POST['password1'],
+                                                    rol="Cliente", estado="Activo",
+                                                    )
+                    p.save()
+                    # p.save()
                     return redirect('home')
                 except IntegrityError:
                     return render(request, 'Registro.html', {
