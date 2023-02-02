@@ -10,8 +10,9 @@ from app.models import Lote
 
 class HomeView(View):
     def get(self, request, *args, **kwargs):
+        oco01 = Lote.objects.get(id_lotes=5)
         context = {
-
+        'oco01': oco01,
         }
         return render(request, 'index.html', context)
 

@@ -7,9 +7,9 @@ from .models import Lote, Servicio
 
 class InicioAView(View):
     def get(self, request, *args, **kwargs):
-        lotes=Lote.objects.all()
+        oco01 = Lote.objects.get(id_lotes=5)
         context = {
-            'lotes': lotes,
+        'oco01': oco01,
         }
         return render(request, 'Admin/home.html', context)
 
@@ -40,9 +40,9 @@ class InicioUView(View):
 
 class TerrenoView(View):
     def get(self, request, *args, **kwargs):
-        posts = Lote.objects.all()
+        oco01 = Lote.objects.get(id_lotes=5)
         context = {
-            'posts': posts
+            'oco01': oco01,
         }
         return render(request, 'Admin/Terrenos/terrenos.html', context)
 
@@ -85,6 +85,13 @@ class TerrenoEditView(UpdateView):
         pk = self.kwargs['pk']
         return reverse_lazy('Admin:terrenos')
         
+class ServiciosEditView(UpdateView):
+    model=Servicio
+    fields=['tipo','precio']
+    template_name='Admin/Servicios/edit.html'
+    def get_success_url(self, **kwargs):
+        pk = self.kwargs['pk']
+        return reverse_lazy('Admin:servicios')
 
 class TerrenoDeleteView(DeleteView):
     model = Lote
@@ -115,17 +122,7 @@ class ServiciosCreateView(View):
         context = {
 
         }
-        return render(request, 'Admin/Servicios/servicios.html', context)
-
-
-class ServiciosEditView(UpdateView):
-    model=Servicio
-    fields=['tipo','precio']
-    template_name='Admin/Servicios/edit.html'
-    def get_success_url(self, **kwargs):
-        pk = self.kwargs['pk']
-        return reverse_lazy('Admin:servicios')
-        
+        return render(request, 'Admin/Servicios/servicios.html', context)        
 
 class ServiciosDeleteView(DeleteView):
     model = Servicio
