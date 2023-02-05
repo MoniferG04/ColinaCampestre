@@ -5,14 +5,14 @@
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                     aria-hidden="true">&times;</span></button>
         </div>
-        <form method="POST" action="{% url 'Admin:eliminaTerreno' object.id_lotes%}">
+        <form method="POST" action="{% url 'Admin:eliminaFecha' object.id_fecha%}">
             {% csrf_token %}
             <div class="modal-body">
 
 
                 <div class="informacion">
-                    <h3 class="page__heading">Editar Animal</h3>
-                    Esta seguro que quiere eliminar el lote siguiente lote?
+                    <h3 class="page__heading">Editar servicio</h3>
+                    Esta seguro que quiere eliminar la siguiente fecha?
                     
                     <br /> 
                     {{form}}

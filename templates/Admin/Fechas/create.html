@@ -1,31 +1,20 @@
 <div class="modal-dialog modal-lg" role=" document" >
     <div class="modal-content">
         <div class="modal-header">
-            <h2 class="modal title">Crear Terreno</h2>
+            <h2 class="modal title">Crear Servicio</h2>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                     aria-hidden="true">&times;</span></button>
         </div>
-        <form method="POST" action="{% url 'Admin:creaTerreno' %}">
+        <form method="POST" action="{% url 'Admin:creaFecha' %}">
             {% csrf_token %}
             <div class="modal-body">
 
 
                 <div class="informacion">
-                    <h3 class="page__heading">Editar Animal</h3>
-                    matricula{{form.matricula}}
+                    <h3 class="page__heading">Editar servicio</h3>
+                    Dia{{form.date}}
                     <br />
-                    ancho{{form.ancho}}
-                    <br />
-                    largo{{form.largo}}
-                    <br />
-                    precio{{form.precio}}
-                    <br />
-                    zona{{form.zona}}
-                    <br />
-                    estado{{form.estado}}
-                    <br />
-                    servicio{{form.servicio}}
-                    <br />
+                    Estado{{form.estado}}
                 </div>
             </div>
 

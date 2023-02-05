@@ -3,3 +3,4 @@ django==4.1.5
 django-allauth==0.43.0 #https://django-allauth.readthedocs.io/en/latest/installation.html
 #sudo apt-get install node.js==12.22.9
 #sudo apt-get install npm==8.5.1
+

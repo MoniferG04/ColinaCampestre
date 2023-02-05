@@ -1,40 +1,39 @@
-<div class="modal-dialog modal-lg" role=" document">
+<div class="modal-dialog modal-dialog-centered modal-md" role=" document">
     <div class="modal-content">
-        <div class="modal-header">
-            <h2 class="modal title">Editar Terreno</h2>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
+        <div class="modal-header bg-blue-900">
+            <h3 class="text-blue-900 text-3xl text-white font-semibold"><i class="fas fa-file-alt"></i> Editar Lote</h3>
+            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form method="POST" action="{% url 'Admin:editaTerreno' object.id_lotes%}">
-            
             {% csrf_token %}
             <div class="modal-body">
-
-
-                <div class="informacion">
-                    <h3 class="page__heading">Editar Animal</h3>
-                    matricula{{form.matricula}}
-                    <br />
-                    ancho{{form.ancho}}
-                    <br />
-                    largo{{form.largo}}
-                    <br />
-                    precio{{form.precio}}
-                    <br />
-                    zona{{form.zona}}
-                    <br />
-                    estado{{form.estado}}
-                    <br />
-                    servicio{{form.servicio}}
-                    <br />
+                <div>
+                    <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-address-card"></i> Matricula</b><span>{{form.matricula}}</span></li>
+                    <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-sharp fa-solid fa-map-location-dot"></i> Zona</b><span>{{form.zona}}</span></li>
+                    <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-ruler-horizontal"></i> Ancho</b><span>{{form.ancho}}</span></li>
+                    <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-ruler-vertical"></i> Largo</b><span>{{form.largo}}</span></li>
+                    <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fad fa-dollar-sign"></i> Precio</b><span>{{form.precio}}</span></li>
+                    <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fas fa-toggle-on"></i> Estado</b><span>{{form.estado}}</span></li>
                 </div>
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
-                <button class="btn btn-primary" type="submit" >Confirmar</button>
+                <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="submit" onclick="Editar_lote()">Confirmar</button>
             </div>
         </form>
 
     </div>
 </div>
+
+<script>
+    function Editar_lote(){
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Lote editado con éxito!',
+            showConfirmButton: false,
+            timer: 1500,
+});
+    }
+</script>

@@ -1,4 +1,4 @@
-from .views import HomeView, RegistreView, LoginView, signoutView, AboutView, ContactoView, InfoView, error404
+from .views import HomeView, RegistreView, LoginView, signoutView, AboutView, ContactoView, InfoView, error404, ReservaView
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import handler404
@@ -14,6 +14,7 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name='about'),
     path('contacto/',ContactoView.as_view(), name='contacto'),
     path('info/<int:id>',InfoView.as_view(), name='info'),
+    path('Reserva/', ReservaView.as_view(), name="reserva"),
 
 
 ]

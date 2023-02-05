@@ -2129,7 +2129,7 @@
 			<g>
 			
 					
-				<path id="oco01" onclick="Abrir_modal('{% url 'info' id=1 %}')" data-estado={{oco01.estado}} class="lotes" class="st15"
+				<path id="oco01" onclick="Abrir_modal('{% url 'info' id=5 %}')" data-estado={{oco01.estado}} class="lotes" class="st15"
 					d="M507.7,119.8l-4.3-39.3l31.3-11.7l25.4-8.7l6.8,32.4C545.6,97.8,525.5,107,507.7,119.8L507.7,119.8z" />
 				<text transform="matrix(0.9974 -7.269664e-02 7.269664e-02 0.9974 531.8397 90.9746)"
 					class="st2 st16">01</text>
@@ -13057,11 +13057,11 @@
  	 var paths = document.getElementsByClassName("lotes"); 
  	for (let path of paths) {
     	var color = path.getAttribute("data-estado");
-    	if(color == "reservado"){
+    	if(color == "Reservado"){
       		path.style.fill="#45C8ED"; 
-    	}else if(color == "vendido"){
+    	}else if(color == "Vendido"){
       		path.style.fill="#07D123"; 
-    	}else if(color == "disponible"){
+    	}else if(color == "Disponible"){
       		path.style.fill="white"; 
     }
   }
@@ -13076,11 +13076,11 @@ for (var i = 0; i < pathsl.length; i++) {
 		var paths = document.getElementsByClassName("lotes"); 
  		for (let path of paths) {
     		var color = path.getAttribute("data-estado"); 
-    		if(color == "reservado"){
+    		if(color == "Reservado"){
       			path.style.fill="#45C8ED"; 
-    		}else if(color == "vendido"){
+    		}else if(color == "Vendido"){
       			path.style.fill="#07D123"; 
-   			}else if(color == "disponible"){
+   			}else if(color == "Disponible"){
       			path.style.fill="white"; 
     		}
 		}

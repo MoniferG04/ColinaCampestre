@@ -1,0 +1,66 @@
+{% extends 'Admin/home.html' %}
+{% load static %}
+
+{% block title %} Fechas {%endblock %}
+
+
+{% block content %}
+
+<div class="producto">
+    <div class="card" style="flex-direction: row-reverse">
+        <button type="button" class="btn btn-primary" onclick="Abrir_modal_Crear('{% url 'Admin:creaFecha' %}')">Añadir
+                Fecha</button>
+    </div>
+
+    <div class="card" id="centro">
+        <div class="items">
+            {% for post in posts %}
+            <div class="cards">
+                <div class="cards1">
+                    <div class="picture">
+                        <img src="{% static 'img/CasaProvisional.jpg' %}" alt="" />
+                    </div>
+                    <div class="description">
+                        <div><a>Dia: {{post.date}}</a></div>
+                        <div><a>Estado: {{post.estado}}</a></div>
+                    </div>
+                    <div class="opcionesAdmin">
+                        <button style="background: none ;border: none;" onclick="Abrir_modal_Edit('{% url 'Admin:editaFecha' post.id_fecha %}')"><img src="{% static 'img/editar.png' %}" alt="" /></button>
+                        <button style="background: none ;border: none;" onclick="Abrir_modal_Delete('{% url 'Admin:eliminaFecha' post.id_fecha %}')"><img src="{% static 'img/delete.png' %}" alt="" /></button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}            
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="crear" role="dialog"> </div>
+<div class="modal fade" id="editar" role="dialog"> </div>
+<div class="modal fade" id="eliminar" role="dialog"> </div>
+
+{% endblock %}
+
+{% block ExtraJS %}
+    <script type="text/javascript">
+        function Abrir_modal_Crear(url){
+            $('#crear').load(url, function(){
+                $(this).modal('show');
+            });
+        }
+
+        function Abrir_modal_Edit(url){
+            $('#editar').load(url, function(){
+                $(this).modal('show');
+            });
+        }
+
+        function Abrir_modal_Delete(url){
+            $('#eliminar').load(url, function(){
+                $(this).modal('show');
+            });
+        }
+        
+    </script>
+
+{% endblock ExtraJS %}

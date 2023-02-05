@@ -1,54 +1,68 @@
+{% load static %}
 <!-- MODAL DESCRIPCION-->
 <div class="modal-dialog modal-dialog-centered modal-md" role=" document">
-      <div class="modal-content">
-        <div class="modal-header bg-blue-900">
-          <h3 class="text-center text-lg text-white font-semibold"><i class="fas fa-file-alt"></i> Descripción</h3>
-          <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <ul class="flex flex-column border-400 border-1 px-2">
-            <li class="w-full border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-fingerprint"></i> Id</b><span>{{lote.id_lotes }}</span></li>
-            <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-address-card"></i> Matricula</b><span>{{lote.id_lotes }}</span></li>
-            <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-sharp fa-solid fa-map-location-dot"></i> Zona</b><span>{{lote.id_lotes }}</span></li>
-            <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-ruler-horizontal"></i> Ancho(m)</b><span id="ancho">{{lote.ancho }}</span></li>
-            <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-ruler-vertical"></i> Largo(m)</b><span id="largo">{{lote.largo }}</span></li>
-            <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fas fa-ruler-combined"></i> Tamaño(m<sup>2</sup>)</b><span id="tamaño"></span></li>
-            <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fad fa-dollar-sign"></i> Precio</b><span id="precio">800000000</span></li>
-            <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fad fa-dollar-sign"></i> Precio m<sup>2</sup></b><span id="preciom"></span></li>
-            <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fas fa-toggle-on"></i> Estado</b><span id="estado">{{lote.estado }}</span></li>
-          </ul>
-        </div>
-        <div class="flex justify-content-center align-items-center pb-4">
-          <button type="button" id="reservar" data-bs-dismiss="modal" class="btn-enviar w-5" onclick="alert()"><i class="fas fa-check-circle"></i> Reservar</button>
-        </div>
-      </div>
+  <div class="modal-content">
+    <div class="modal-header bg-blue-900">
+      <h3 class="text-center text-lg text-white font-semibold"><i class="fas fa-file-alt"></i> Descripción
+      </h3>
+      <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <ul class="flex flex-column border-400 border-1 px-2">
+        <li class="w-full border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-fingerprint"></i> Id</b><span>{{lote.id_lotes }}</span></li>
+        <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-address-card"></i> Matricula</b><span>{{lote.matricula}}</span></li>
+        <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-sharp fa-solid fa-map-location-dot"></i> Zona</b><span>{{lote.zona }}</span></li>
+        <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-ruler-horizontal"></i> Ancho(m)</b><span id="ancho">{{lote.ancho }}</span></li>
+        <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-ruler-vertical"></i> Largo(m)</b><span id="largo">{{lote.largo }}</span></li>
+        <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fas fa-ruler-combined"></i> Tamaño(m<sup>2</sup>)</b><span id="tamaño"></span></li>
+        <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fad fa-dollar-sign"></i> Precio</b><span id="precio">{{lote.precio }}</span></li>
+        <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fad fa-dollar-sign"></i> Precio m<sup>2</sup></b><span id="preciom"></span></li>
+        <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fas fa-toggle-on"></i> Estado</b><span id="estado">{{lote.estado }}</span></li>
+      </ul>
+    </div>
+    <div class="flex justify-content-center align-items-center pb-4">
+      {% if user.is_authenticated %}
+       
+        {% if lote.estado == "Reservado" or lote.estado == "Vendido" %} 
+   
+          <button type="button"  id="reservar" data-bs-dismiss="modal" class="btn-enviar w-5" onclick="alert()">
+            <i class="fas fa-check-circle"></i> Reservar
+          </button>
+        {% else %}
+         
+          <button type="button"  id="reservar" data-bs-dismiss="modal" class="btn-enviar w-5" onclick="Abrir_modal('{% url 'reserva' %}')">
+            <i class="fas fa-check-circle"></i> Reservar
+          </button>
+        {% endif %}
+      {% else %}         
+          <button type="button" id="reservar" data-bs-dismiss="modal" class="btn-enviar w-5" onclick="sesion_require()">
+            <i class="fas fa-check-circle"></i> Reservar
+          </button>
+      {% endif %}
+    </div>
+  </div>
 </div>
-
-<script>
+<div class="modal fade" id="crear" role="dialog"> </div>
+{% block scripts %}
+<script type="text/javascript">
+  
   var ancho = document.getElementById('ancho').innerHTML
   var largo = document.getElementById('largo').innerHTML
   var precio = document.getElementById('precio').innerHTML
   var estado = document.getElementById('estado').innerHTML
 
-  document.getElementById('tamaño').innerHTML=(ancho*largo);
+  document.getElementById('tamaño').innerHTML = (ancho * largo);
   var tamaño = document.getElementById('tamaño').innerHTML
-  document.getElementById('preciom').innerHTML=((precio/tamaño).toFixed(2));
+  document.getElementById('preciom').innerHTML = ((precio / tamaño).toFixed(2));
 
+function alert() {
+        document.getElementById('h1').innerHTML = estado;
+        $('#alert_estado').modal('show');
+}
 
-  function alert(){
-    const sesion = 'true';
+function sesion_require() {
+        $('#alert_login').modal('show');
+}
 
-    if(sesion == 'true'){
-      if(estado == "reservado" || estado == "vendido"){
-      document.getElementById('h1').innerHTML=estado;
-      $('#alert_estado').modal('show');
-    }else{
-      $('#reservacion').modal('show');
-    }
-    }else{
-      $('#alert_login').modal('show');
-    }
-  }
 </script>
-
-
+{% endblock scripts %}

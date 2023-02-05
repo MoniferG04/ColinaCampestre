@@ -1,7 +1,6 @@
 {% load static %}
   <!-- Modal Registro-->
-  <div class="modal-dialog modal-lg" id="registro" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog  modal-dialog-centered modal-md" id="registro" role=" document">
         <div class="modal-content">
           <div class="modal-header modalhead">
             <img class="modal-banner" width="200px" src="{% static 'img/logo2.png' %}"/>
@@ -34,9 +33,22 @@
             </form>
           </div>
           <div class="flex justify-content-end pr-6">
-            <p class="pr-1">Ya tienes una cuenta?</p><a class="text-gray-700 transition-colors hover:text-blue-900 font-semibold cursor-pointer" data-bs-toggle="modal" data-bs-target="#login">Iniciar sesión</a>
+            <p class="pr-1">Ya tienes una cuenta?</p><a class="text-gray-700 transition-colors hover:text-blue-900 font-semibold cursor-pointer" onclick="Abrir_modal_login('{% url 'login' %}')" data-bs-dismiss="modal">Iniciar sesión</a>
           </div>
         </div>
-      </div>
     </div>
 
+    <div class="modal fade" id="login" role="dialog"> </div>
+
+    {% block scripts %}
+    <script type="text/javascript">
+        function Abrir_modal_login(url){
+            $('#login').load(url, function(){
+                $(this).modal('show');
+            });
+        }
+
+        
+    </script>
+
+{% endblock scripts %}

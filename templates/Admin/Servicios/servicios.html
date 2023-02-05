@@ -1,7 +1,7 @@
 {% extends 'Admin/home.html' %}
 {% load static %}
 
-{% block title %} Terrenos {%endblock %}
+{% block title %} Servicios {%endblock %}
 
 
 {% block content %}
@@ -12,26 +12,28 @@
                 Servicio</button>
     </div>
 
-    <div class="card" id="centro">
-        <div class="items">
+    <div class="card justify-content-center align-items-center">
+        <table class="border-1 border-gray-300 border-round w-7 p-4">
+            <tr class="p-2 border-bottom-1 border-gray-400 font-semibold text-white text-xl bg-blue-700">
+                <td class="pl-3">Tipo</td>
+                <td>Precio</td>
+                <td class="flex justify-content-end align-items-center pr-3">Opciones</td>
+            </tr>
             {% for post in posts %}
-            <div class="cards">
-                <div class="cards1">
-                    <div class="picture">
-                        <img src="{% static 'img/CasaProvisional.jpg' %}" alt="" />
-                    </div>
-                    <div class="description">
-                        <div><a>Tipo: {{post.tipo}}</a></div>
-                        <div><a>Precio: ${{post.precio}}</a></div>
-                    </div>
-                    <div class="opcionesAdmin">
-                        <button style="background: none ;border: none;" onclick="Abrir_modal_Edit('{% url 'Admin:editaServicio' post.id_servicio %}')"><img src="{% static 'img/editar.png' %}" alt="" /></button>
-                        <button style="background: none ;border: none;" onclick="Abrir_modal_Delete('{% url 'Admin:eliminaServicio' post.id_servicio %}')"><img src="{% static 'img/delete.png' %}" alt="" /></button>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}            
-        </div>
+                <tr class="p-2 border-bottom-2 border-gray-400 font-semibold">
+                        <td class="pl-3 p-2">
+                            {{post.tipo}}
+                        </td>
+                        <td>
+                            {{post.precio}}
+                        </td>
+                        <td class="flex justify-content-end align-items-center pr-3 p-2"> 
+                            <button class="border-none bg-blue-400 p-2 border-round mr-1" onclick="Abrir_modal_Edit('{% url 'Admin:editaServicio' post.id_servicio %}')"><i class="fas fa-edit"></i></button>
+                        <button class="border-none bg-pink-500 p-2 border-round" onclick="Abrir_modal_Delete('{% url 'Admin:eliminaServicio' post.id_servicio %}')"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                </tr>
+            {% endfor %}  
+            </table>          
     </div>
 </div>
 
@@ -56,9 +58,23 @@
         }
 
         function Abrir_modal_Delete(url){
-            $('#eliminar').load(url, function(){
-                $(this).modal('show');
-            });
+            Swal.fire({
+            title: 'Estás seguro?',
+            text: "El servicio se eliminara permanentemente!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                'Borrado!',
+                'El servicio ha sido eliminado',
+                'success'
+                )
+            }
+            })
         }
         
     </script>

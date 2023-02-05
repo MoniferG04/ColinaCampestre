@@ -4,7 +4,12 @@
 {% block title %} Terrenos {%endblock %}
 
 {% block content %}
-
+<div class="w-full">
+<div class="flex justify-content-evenly w-full">
+    <p class="text-sm md:text-xl font-semibold"><i class="fas fa-circle text-2xl md:text-3xl text-white border-1 border-gray-900 border-circle"></i>Disponible</p>
+    <p class="text-sm md:text-xl font-semibold"><i class="fas fa-circle reservado text-2xl md:text-3xl border-1 border-gray-900 border-circle"></i>Reservado</p>
+    <p class="text-sm md:text-xl font-semibold"><i class="fas fa-circle vendido text-2xl md:text-3xl border-1 border-gray-900 border-circle"></i>Vendido</p>
+</div>
 {% include 'Admin/Terrenos/mapa.html' %}
-
+</div>
 {% endblock %}

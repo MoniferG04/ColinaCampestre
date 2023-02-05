@@ -1,0 +1,66 @@
+{% load static %}
+ <!-- Hacer reservacion-->
+ <div class="modal-dialog modal-dialog-centered modal-md" role=" document">
+      <div class="modal-content">
+        <div class="modal-header modalhead">
+          <img class="modal-banner" width="200px" src="{% static 'img/logo2.png' %}"/>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body px-6">
+          <div class="flex justify-content-center align-items-center justify-content-evenly pb-2">
+            <div class="flex flex-column text-center">
+              <i class="fa-solid fa-1 text-green-400 text-3xl"></i><label class="text-green-400">Elegir</label>
+            </div>
+            <i class="fa-solid fa-circle-chevron-right text-green-400 text-4xl"></i>
+            <div class="flex flex-column text-center">
+              <i class="fa-solid fa-2 text-green-400 text-3xl"></i><label class="text-green-400">Reservar</label>
+            </div>
+          </div>
+            <h1 class="text-xl text-center text-blue-900 font-semibold">Reservación</h1>
+            <p class="text-center">Seleccione la fecha y hora de su reserva</p>
+            <form method="POST" action="{% url 'reserva' %}">
+                {% csrf_token %}
+               <p> Dia: </p> {{post.dia}}
+               <p> Hora: </p> {{post.hora}}
+              <div class="flex justify-content-center align-items-center my-4">
+                <button type="submit" data-bs-dismiss="modal" onclick="confirmar()" class="btn-enviar"><i class="fa-solid fa-circle-check"></i> Confirmar</button>
+              </div>
+            </form>
+        </div>
+      </div>
+  </div>
+{% block scripts %}
+  <script type="text/javascript">
+    function confirmar(){
+      Swal.fire({
+      icon: 'success',
+      title: 'Reserva exitosa!',
+      text: 'Te esperamos!',
+      confirmButtonText:"Allí estaré",
+    });
+    }
+
+    $(document).ready(function() {
+        // Obtener las fechas ocupadas desde el contexto de la vista
+        var fechasOcupadas = {{ fechas_ocupadas|safe }};
+        console.log(fechasOcupadas)
+        // Deshabilitar las fechas ocupadas en el formulario
+        $("#id_dia").datepicker({
+          beforeShowDay: function(date) {
+            var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+            return [fechasOcupadas.indexOf(string) == -1];
+          }
+         });
+        // deshabilita la selección de hora inicialmente
+        $("#id_hora").prop("disabled", true);
+    
+        // cuando el usuario selecciona un día
+        $("#id_dia").change(function() {
+          // habilita la selección de hora
+          $("#id_hora").prop("disabled", false);
+        });   
+              
+      }); 
+     
+  </script>
+{% endblock scripts %}

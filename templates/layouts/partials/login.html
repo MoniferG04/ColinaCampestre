@@ -1,7 +1,6 @@
 {% load static %}
 <!-- Modal Login-->
-<div class="modal-dialog modal-lg" role=" document">
-    <div class="modal-dialog modal-dialog-centered">
+<div class="modal-dialog modal-dialog-centered modal-md" role=" document" id="login">
       <div class="modal-content">
         <div class="modal-header modalhead">
           <img class="modal-banner" width="200px" src="{% static 'img/logo2.png' %}"/>
@@ -29,7 +28,6 @@
           <p class="pr-1">No tienes una cuenta?</p><a class="text-gray-700 transition-colors hover:text-blue-900 font-semibold cursor-pointer" onclick="Abrir_modal_Registro('{% url 'Registro' %}')">Registrarse</a>
         </div>
       </div>
-    </div>
   </div>
   <div class="modal fade" id="registro" role="dialog"> </div>
 
@@ -44,46 +42,4 @@
 
     {% endblock scripts %}
 
-  <!-- Alerta Ocupado-->
-  <div class="modal fade" id="alert_estado" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header modalhead">
-          <img class="modal-banner" width="200px" src="{% static 'img/logo2.png' %}"/>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <h1 class="text-xl text-center text-blue-900 font-semibold">Lo sentimos el lote esta <span id="h1"></span>.</h1>
-      </div>
-    </div>
-  </div>
-
-   <!-- Alerta Registrarse-->
-   <div class="modal fade" id="alert_login" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header modalhead">
-          <img class="modal-banner" width="200px" src="{% static 'img/logo2.png' %}"/>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <h1 class="text-xl text-center text-blue-900 font-semibold">Debe iniciar sesión para continuar</h1>
-      </div>
-    </div>
-  </div>
-
-   <!-- Hacer reserva-->
-   <div class="modal fade" id="reservacion" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header modalhead">
-          <img class="modal-banner" width="200px" src="{% static 'img/logo2.png' %}"/>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <h1 class="text-xl text-center text-blue-900 font-semibold">Reservacion</h1>
-        <select>
-          {% for lote in lotes %}
-          <option>{{lote.ancho}}</option>
-          {% endfor %}
-        </select>
-      </div>
-    </div>
-  </div>
+  
