@@ -1,0 +1,52 @@
+{% extends 'Admin/home.html' %}
+{% load static %}
+
+{% block title %} Reservaciones {%endblock %}
+
+
+{% block content %}
+
+<div class="producto">
+    <div  id="centro">
+        <div class="card justify-content-center align-items-center">
+            <table class=" w-9 p-4">
+                <tr class="p-2 border-bottom-1 border-gray-400 font-semibold text-white text-xl bg-blue-700">
+                    <td class="pl-3">Dia</td>
+                    <td>Hora</td>
+                    <td>Lote</td>
+                    <td>usuario</td>
+                    <td class="flex justify-content-end align-items-center pr-3">Opciones</td>
+                </tr>
+                {% for post in posts %}
+                    <tr class="p-2 border-bottom-2 border-gray-400 font-semibold">
+                            <td class="pl-3 p-2">
+                                {{post.dia}}
+                            </td>
+                            <td>
+                                {{post.hora}}
+                            </td>
+                            <td>
+                                {{post.lote}}
+                            </td>
+                            <td>
+                                {{post.usuario}}
+                            </td>
+                            <td class="flex justify-content-end align-items-center pr-3 p-2"> 
+                                <a href="{% url 'Admin:lote_vendido' post.lote %}" class="border-none bg-blue-400 p-2 border-round mr-1" ><i class="fas fa-check-square text-white"></i> Vendido</a>
+                                <a href="{% url 'Admin:lote_disponible' post.lote %}" class="border-none bg-pink-500 p-2 border-round" ><i class="fas fa-trash-alt"></i> Disponible</a>
+                            </td>
+                    </tr>
+                {% endfor %}   
+             </table>        
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block ExtraJS %}
+    <script type="text/javascript">
+       
+    </script>
+
+{% endblock ExtraJS %}

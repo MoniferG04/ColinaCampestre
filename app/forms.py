@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.forms import ModelForm
-from .models import Lote, Servicio, Fechas, Reserva
+from .models import Lote, Servicio, Reserva, Usuario
 
 class LoteCreateForm(forms.ModelForm):
     class Meta:
@@ -13,12 +13,12 @@ class LoteCreateForm(forms.ModelForm):
 class ServicioCreateForm(forms.ModelForm):
     class Meta:
         model=Servicio
-        fields=('tipo','precio')
-    
-class FechaCreateForm(forms.ModelForm):
+        fields=('tipo','precio') 
+
+class UsuarioCreateForm(forms.ModelForm):
     class Meta:
-        model=Fechas
-        fields=('date','estado')
+        model=Usuario
+        fields=('username','email','password') 
 
 class RegisterForm(UserCreationForm):
     class Meta:
@@ -54,5 +54,5 @@ class ReservaForm(ModelForm):
     
     class Meta:
         model = Reserva
-        fields = ['dia','hora']
+        fields = ['dia','hora','lote','usuario']
         

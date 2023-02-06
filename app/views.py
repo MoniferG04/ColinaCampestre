@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, UpdateView, DeleteView
-from .forms import ServicioCreateForm, FechaCreateForm
+from .forms import ServicioCreateForm, UsuarioCreateForm
+from django.contrib.auth.models import User
 from django.urls import reverse_lazy
-from .models import Lote, Servicio, Fechas
+from .models import Lote, Servicio, Reserva, Usuario
 
 
 class InicioAView(View):
@@ -22,13 +23,21 @@ class ServiciosView(View):
         }
         return render(request, 'Admin/Servicios/servicios.html', context)
 
-class FechaView(View):
+class UsuariosView(View):
     def get(self, request, *args, **kwargs):
-        posts = Fechas.objects.all()
+        posts = Usuario.objects.filter(rol__in=['Cliente', 'Propietario'])
         context = {
             'posts': posts
         }
-        return render(request, 'Admin/Fechas/fecha.html', context)
+        return render(request, 'Admin/Usuarios/usuarios.html', context)
+
+class ReservacionView(View):
+    def get(self, request, *args, **kwargs):
+        posts = Reserva.objects.all()
+        context = {
+            'posts': posts
+        }
+        return render(request, 'Admin/Reservaciones/Reservaciones.html', context)
 
 class InicioDView(View):
     def get(self, request, *args, **kwargs):
@@ -83,15 +92,15 @@ class ServiciosCreateView(View):
                 p, created = Servicio.objects.get_or_create(tipo=tipo, precio=precio)
                 p.save()
                 return redirect('Admin:servicios')
-        context = {
+            
+        return redirect('Admin:servicios')      
 
-        }
-        return render(request, 'Admin/Servicios/servicios.html', context)        
 
-class ServiciosDeleteView(DeleteView):
-    model = Servicio
-    template_name='Admin/Servicios/delete.html'
-    success_url=reverse_lazy('Admin:servicios')
+def eliminar_servicio(request,id):
+    servicio = Servicio.objects.get(id_servicio=id)
+    servicio.delete()
+    return redirect(to='Admin:servicios')
+    
 
 class ServiciosEditView(UpdateView):
     model=Servicio
@@ -101,39 +110,62 @@ class ServiciosEditView(UpdateView):
         pk = self.kwargs['pk']
         return reverse_lazy('Admin:servicios')
 
-class FechaCreateView(View):
+class CambiarAEstadoVendidoView(View):
     def get(self, request, *args, **kwargs):
-        form = FechaCreateForm()
+        lote = get_object_or_404(Lote, matricula=kwargs['pk'])
+        lote.estado = "Vendido"
+        lote.save()
+        return redirect('Admin:terrenos')
+
+class CambiarAEstadoDisponibleView(View):
+    def get(self, request, *args, **kwargs):
+        lote = get_object_or_404(Lote, matricula=kwargs['pk'])
+        lote.estado = "Disponible"
+        lote.save()
+        return redirect('Admin:terrenos')
+
+class UsuarioCreateView(View):
+    def get(self, request, *args, **kwargs):
+        form = UsuarioCreateForm()
         context = {
             'form': form
         }
-        return render(request, 'Admin/Fechas/create.html', context)
+        return render(request, 'Admin/Usuarios/create.html', context)
 
     def post(self, request, *args, **kwargs):
         if request.method == "POST":
-            form = FechaCreateForm(request.POST)
+            form = UsuarioCreateForm(request.POST)
             if form.is_valid():
-                dia = form.cleaned_data.get('dia')
-                hora = form.cleaned_data.get('hora')
-                estado = form.cleaned_data.get('estado')
-
-                p, created = Fechas.objects.get_or_create(dia=dia,hora=hora,estado=estado)
+                username = form.cleaned_data.get('username')
+                email = form.cleaned_data.get('email')
+                password = form.cleaned_data.get('password')
+                estado = "Activo"
+                rol="Propietario"
+                
+                user = User.objects.create_user(username=username,
+                                                                email=email,
+                                                                password=password,
+                                                        )
+                user.save()
+                p, created = Usuario.objects.get_or_create(username=username,
+                                                                email=email,
+                                                                password=password,
+                                                                rol=rol, estado=estado,
+                                                                )
                 p.save()
-                return redirect('Admin:fecha')
-        context = {
+                return redirect('Admin:usuario')
+        return redirect('Admin:usuario')       
 
-        }
-        return render(request, 'Admin/Fechas/fecha.html', context)        
+def eliminar_usuario(request,id):
+    usuario = Usuario.objects.get(id_usuario=id)
+    usuario.delete()
+    return redirect(to='Admin:usuario')
+    
 
-class FechaDeleteView(DeleteView):
-    model = Fechas
-    template_name='Admin/Fechas/delete.html'
-    success_url=reverse_lazy('Admin:fecha')
-
-class FechaEditView(UpdateView):
-    model=Fechas
-    fields=['tipo','precio']
-    template_name='Admin/Fechas/edit.html'
+class UsuarioEditView(UpdateView):
+    model=Usuario
+    fields=['username','email','password','rol','estado']
+    template_name='Admin/Usuarios/edit.html'
     def get_success_url(self, **kwargs):
         pk = self.kwargs['pk']
-        return reverse_lazy('Admin:fecha')
+        return reverse_lazy('Admin:usuario')

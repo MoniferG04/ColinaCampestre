@@ -22,6 +22,7 @@
                 {% csrf_token %}
                <p> Dia: </p> {{post.dia}}
                <p> Hora: </p> {{post.hora}}
+               <p> {{lote.estado}}</p>
               <div class="flex justify-content-center align-items-center my-4">
                 <button type="submit" data-bs-dismiss="modal" onclick="confirmar()" class="btn-enviar"><i class="fa-solid fa-circle-check"></i> Confirmar</button>
               </div>
@@ -29,15 +30,16 @@
         </div>
       </div>
   </div>
-{% block scripts %}
+
   <script type="text/javascript">
+    
     function confirmar(){
       Swal.fire({
       icon: 'success',
       title: 'Reserva exitosa!',
       text: 'Te esperamos!',
       confirmButtonText:"Allí estaré",
-    });
+    })
     }
 
     $(document).ready(function() {
@@ -48,6 +50,10 @@
         $("#id_dia").datepicker({
           beforeShowDay: function(date) {
             var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+            var hoy = new Date();
+            if (date < hoy) {
+              return [false];
+            }
             return [fechasOcupadas.indexOf(string) == -1];
           }
          });
@@ -63,4 +69,3 @@
       }); 
      
   </script>
-{% endblock scripts %}

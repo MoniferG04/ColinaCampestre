@@ -1,0 +1,36 @@
+<div class="modal-dialog modal-dialog-centered modal-md" role=" document">
+    <div class="modal-content">
+        <div class="modal-header bg-blue-900">
+            <h3 class="text-blue-900 text-3xl text-white font-semibold"><i class="fas fa-file-alt"></i> Agregar Usuario</h3>
+            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST" action="{% url 'Admin:creaUsuario' %}">
+            {% csrf_token %}
+            <div class="modal-body">
+                <div>
+                    <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fas fa-file-signature"></i> Nombre: </b><span>{{form.username}}</span></li>
+                    <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fad fa-dollar-sign"></i> Email: </b><span>{{form.email}}</span></li>
+                    <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fas fa-file-signature"></i> Password: </b><span>{{form.password}}</span></li>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="submit" onclick="Crear_servicio()">Confirmar</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    function Crear_servicio(){
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Usuario agregado con éxito!',
+            showConfirmButton: false,
+            timer: 1500,
+});
+    }
+</script>

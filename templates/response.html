@@ -42,7 +42,9 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="crear" role="dialog"> </div>
+
 {% block scripts %}
 <script type="text/javascript">
   
@@ -54,15 +56,16 @@
   document.getElementById('tamaño').innerHTML = (ancho * largo);
   var tamaño = document.getElementById('tamaño').innerHTML
   document.getElementById('preciom').innerHTML = ((precio / tamaño).toFixed(2));
+  
 
-function alert() {
-        document.getElementById('h1').innerHTML = estado;
-        $('#alert_estado').modal('show');
-}
+  function alert() {
+          document.getElementById('h1').innerHTML = estado;
+          $('#alert_estado').modal('show');
+  }
 
-function sesion_require() {
-        $('#alert_login').modal('show');
-}
+  function sesion_require() {
+          $('#alert_login').modal('show');
+  }
 
 </script>
 {% endblock scripts %}

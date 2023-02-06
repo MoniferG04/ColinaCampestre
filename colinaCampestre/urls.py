@@ -16,7 +16,6 @@ urlpatterns = [
     path('info/<int:id>',InfoView.as_view(), name='info'),
     path('Reserva/', ReservaView.as_view(), name="reserva"),
 
-
 ]
 
 handler404 =  error404.as_view()

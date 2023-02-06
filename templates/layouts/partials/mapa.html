@@ -1980,7 +1980,7 @@
 					class="st27 st2 st18">23</text>
 			</g>
 			<g>
-				<path id="oco02" onclick="Abrir_modal('{% url 'info' id=2 %}')" data-estado="{{oco02.estado}}" class="lotes" class="st15"
+				<path id="oco02" onclick="Abrir_modal('{% url 'info' id=5 %}')" data-estado="{{oco01.estado}}" class="lotes" class="st15"
 					d="M617.2,87.4c-16.9-0.8-33.8,0.9-50.3,5.1l-6.8-32.4L590,49.7l27.6-6.6L617.2,87.4z" />
 				<text transform="matrix(0.9974 -7.269664e-02 7.269664e-02 0.9974 585.9935 73.75)"
 					class="st2 st16">02</text>
@@ -13047,6 +13047,7 @@
 <div class="modal fade" id="crear" role="dialog"> </div>
 
 <script type="text/javascript">
+
 	function Abrir_modal(url){
 		$('#crear').load(url, function(){
 			$(this).modal('show');

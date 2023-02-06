@@ -1,0 +1,45 @@
+<div class="modal-dialog modal-dialog-centered modal-md" role=" document">
+    <div class="modal-content">
+        <div class="modal-header bg-blue-900">
+            <h3 class="text-blue-900 text-3xl text-white font-semibold"><i class="fas fa-file-alt"></i> Editar Usuario</h3>
+            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST" action="{% url 'Admin:editaUsuario' object.id_usuario%}">
+            
+            {% csrf_token %}
+            {% if form.rol.value  == "Propietario" %}
+            <div class="modal-body">
+                <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-address-card"></i> Nombre: </b><span>{{form.username}}</span></li>
+                <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-sharp fa-solid fa-map-location-dot"></i> Email: </b><span>{{form.email}}</span></li>
+                <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-address-card"></i> Contraseña: </b><span>{{form.password}}</span></li>
+                <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-address-card"></i> Rol: </b><span>{{form.rol}}</span></li>
+                <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-sharp fa-solid fa-map-location-dot"></i> Estado: </b><span>{{form.estado}}</span></li>
+            </div>
+            {% else  %}
+            <div class="modal-body">
+                <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-address-card"></i> Nombre: </b><span>{{form.username.value}}</span></li>
+                <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-sharp fa-solid fa-map-location-dot"></i> Email: </b><span>{{form.email.value}}</span></li>
+                <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-address-card"></i> Rol: </b><span>{{form.rol}}</span></li>
+                <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-sharp fa-solid fa-map-location-dot"></i> Estado: </b><span>{{form.estado}}</span></li>
+            </div>
+            {% endif %}
+            <div class="modal-footer">
+                <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="submit" onclick="Editar_usuario()">Confirmar</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    function Editar_usuario(){
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Usuario editado con éxito!',
+            showConfirmButton: false,
+            timer: 1500,
+});
+    }
+</script>

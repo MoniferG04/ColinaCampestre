@@ -8,11 +8,10 @@
 
 #menu {
     position: fixed;
-    width: 99%;
+    width: 100%;
     flex-direction: row-reverse;
     top: 0;
-    background-color: #062f9ebe;
-    margin: 0.5%;
+    background-color: #062f9e;
     z-index: 1000;
 }
 
@@ -29,12 +28,13 @@
 
 .content{
     display: flex;
+    justify-content: center;
     width: 99%;
     margin: 70px 0.5% 0.5% 0.5%;
 }
 
 .producto{
-    width: 100%;
+    width: 80%;
 }
 
 .card{

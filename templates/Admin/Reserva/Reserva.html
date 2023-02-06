@@ -35,32 +35,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="crear" role="dialog"> </div>
-<div class="modal fade" id="editar" role="dialog"> </div>
-<div class="modal fade" id="eliminar" role="dialog"> </div>
-
 {% endblock %}
 
 {% block ExtraJS %}
     <script type="text/javascript">
-        function Abrir_modal_Crear(url){
-            $('#crear').load(url, function(){
-                $(this).modal('show');
-            });
-        }
-
-        function Abrir_modal_Edit(url){
-            $('#editar').load(url, function(){
-                $(this).modal('show');
-            });
-        }
-
-        function Abrir_modal_Delete(url){
-            $('#eliminar').load(url, function(){
-                $(this).modal('show');
-            });
-        }
-        
+       
     </script>
 
 {% endblock ExtraJS %}
