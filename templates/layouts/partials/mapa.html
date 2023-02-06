@@ -13048,8 +13048,11 @@
 
 <script type="text/javascript">
 
+	var lotId; 
 	function Abrir_modal(url){
 		$('#crear').load(url, function(){
+			lotId = $("#lot-id").val();
+		
 			$(this).modal('show');
 		});
 	}

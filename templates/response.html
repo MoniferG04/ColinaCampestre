@@ -9,9 +9,10 @@
     </div>
     <div class="modal-body">
       <ul class="flex flex-column border-400 border-1 px-2">
-        <li class="w-full border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-fingerprint"></i> Id</b><span>{{lote.id_lotes }}</span></li>
+        <input type="hidden" id="lot-id" value="{{lote.id_lotes}}">
+        <li class="w-full border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-fingerprint"></i> Id</b><span id="lote">{{lote.id_lotes }}</span></li>
         <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-address-card"></i> Matricula</b><span>{{lote.matricula}}</span></li>
-        <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-sharp fa-solid fa-map-location-dot"></i> Zona</b><span>{{lote.zona }}</span></li>
+        <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-sharp fa-solid fa-map-location-dot"></i> Zona</b><span id="zona">{{lote.zona }}</span></li>
         <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-ruler-horizontal"></i> Ancho(m)</b><span id="ancho">{{lote.ancho }}</span></li>
         <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fa-solid fa-ruler-vertical"></i> Largo(m)</b><span id="largo">{{lote.largo }}</span></li>
         <li class="border-bottom-1 border-300 p-2 flex justify-content-between"><b><i class="fas fa-ruler-combined"></i> Tamaño(m<sup>2</sup>)</b><span id="tamaño"></span></li>
@@ -48,6 +49,8 @@
 {% block scripts %}
 <script type="text/javascript">
   
+  var lote = document.getElementById('lote').innerHTML
+  var zona = document.getElementById('zona').innerHTML
   var ancho = document.getElementById('ancho').innerHTML
   var largo = document.getElementById('largo').innerHTML
   var precio = document.getElementById('precio').innerHTML
@@ -57,6 +60,16 @@
   var tamaño = document.getElementById('tamaño').innerHTML
   document.getElementById('preciom').innerHTML = ((precio / tamaño).toFixed(2));
   
+  var lotId; 
+	function Abrir_modal(url){
+		$('#crear').load(url, function(){
+			
+      $('#id_lote').val(lote);
+      $('#zona_lote').val(zona);
+		
+			$(this).modal('show');
+		});
+	}
 
   function alert() {
           document.getElementById('h1').innerHTML = estado;

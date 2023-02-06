@@ -156,18 +156,19 @@ class ReservaView(View):
         }
         
         return render(request, 'layouts/partials/reserva.html', context)
-    # def post(self, request, *args, **kwargs):
-    #      if request.method == "POST":
-    #           form = ReservaForm(request.POST)
-    #           id = request.POST.get('lote_id')
-    #           if form.is_valid():
-    #              dia = form.cleaned_data.get('dia')
-    #              hora = form.cleaned_data.get('hora')
-    #              p, created = Reserva.objects.get_or_create(dia=dia,hora=hora)
-    #              p.save()
-    #              lote = Lote.objects.get(id_lote=id)
-    #              lote.estado = 'Reservado'
-    #              lote.save()
-    #              return redirect('home')
-    #      return redirect('home')
+    def post(self, request, *args, **kwargs):
+        if request.method == "POST":
+               form = ReservaForm(request.POST)
+               if form.is_valid():
+                  dia = form.cleaned_data.get('dia')
+                  hora = form.cleaned_data.get('hora')
+                  id = request.POST.get('lote')
+                  print("entro")
+                  p, created = Reserva.objects.get_or_create(dia=dia,hora=hora,usuario=request.user,lote=id)
+                  p.save()
+                  lote = Lote.objects.get(id_lote=id)
+                  lote.estado = 'Reservado'
+                  lote.save()
+                  return redirect('home')
+        return redirect('home')
 
