@@ -8,7 +8,6 @@ from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
 from app.forms import RegisterForm, ReservaForm
 from app.models import Lote, Usuario, Reserva
-import datetime
 
 
 class HomeView(View):
@@ -61,17 +60,24 @@ class LoginView(View):
                 messages.error(request, "Credenciales incorrectas")
                 return redirect('home')
             else: 
-                if (usuario.rol=='Administrador'): 
-                    login(request,user)
-                    return redirect('Admin:inicioAdmin')
-                else:
-                    if (usuario.rol=="Propietario"): 
+                if(usuario.estado == 'Activo'):
+                    if (usuario.rol=='Administrador'): 
                         login(request,user)
-                        return redirect('Admin:inicioDueño')
+                        return redirect('Admin:inicioAdmin')
                     else:
-                        login(request,user)
-                        messages.success(request, "Inicio exitoso ")
-                        return redirect('home')
+                        if (usuario.rol=="Propietario"): 
+                            login(request,user)
+                            return redirect('Admin:inicioDueño')
+                        else:
+                            login(request,user)
+                            messages.success(request, "Inicio exitoso ")
+                            return redirect('home')
+                else:
+                    messages.error(request, "Sorry, Usuario bloqueado")
+                    return redirect('home')
+
+
+               
             
 
 
@@ -148,22 +154,20 @@ class ReservaView(View):
             'post': post,
             'fechas_ocupadas': fechas_ocupadas,
         }
+        
         return render(request, 'layouts/partials/reserva.html', context)
-    # def post(self, request,id, *args, **kwargs):
-    #     if request.method == "POST":
-    #          form = ReservaForm(request.POST)
-    #          if form.is_valid():
-    #             dia = form.cleaned_data.get('dia')
-    #             hora = form.cleaned_data.get('hora')
-    #             p, created = Reserva.objects.get_or_create(dia=dia,hora=hora)
-    #             p.save()
-    #             lote = Lote.objects.get(id_lote=id)
-    #             lote.estado = 'Reservado'
-    #             lote.save()
-    #             return redirect('home')
-    #     context = {
-    #         'lote':lote,
-
-    #     }
-    #     return render(request, 'layouts/partials/reserva.html', context) 
+    # def post(self, request, *args, **kwargs):
+    #      if request.method == "POST":
+    #           form = ReservaForm(request.POST)
+    #           id = request.POST.get('lote_id')
+    #           if form.is_valid():
+    #              dia = form.cleaned_data.get('dia')
+    #              hora = form.cleaned_data.get('hora')
+    #              p, created = Reserva.objects.get_or_create(dia=dia,hora=hora)
+    #              p.save()
+    #              lote = Lote.objects.get(id_lote=id)
+    #              lote.estado = 'Reservado'
+    #              lote.save()
+    #              return redirect('home')
+    #      return redirect('home')
 
