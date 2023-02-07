@@ -57,9 +57,48 @@ class InicioUView(View):
 
 class TerrenoView(View):
     def get(self, request, *args, **kwargs):
-        oco01 = Lote.objects.get(id_lotes=5)
+        oco01 = Lote.objects.get(id_lotes=1)
+        oco02 = Lote.objects.get(id_lotes=2)
+        oco03 = Lote.objects.get(id_lotes=3)
+        oco04 = Lote.objects.get(id_lotes=4)
+        oco05 = Lote.objects.get(id_lotes=5)
+        oco06 = Lote.objects.get(id_lotes=6)
+        oco07 = Lote.objects.get(id_lotes=7)
+        oco08 = Lote.objects.get(id_lotes=8)
+        oco09 = Lote.objects.get(id_lotes=9)
+        oco10 = Lote.objects.get(id_lotes=10)
+        oco11 = Lote.objects.get(id_lotes=11)
+        oco12 = Lote.objects.get(id_lotes=12)
+        oco13 = Lote.objects.get(id_lotes=13)
+        oco14 = Lote.objects.get(id_lotes=14)
+        oco15 = Lote.objects.get(id_lotes=15)
+        oco16 = Lote.objects.get(id_lotes=16)
+        oco17 = Lote.objects.get(id_lotes=17)
+        oco18 = Lote.objects.get(id_lotes=18)
+        oco19 = Lote.objects.get(id_lotes=19)
+        oco20 = Lote.objects.get(id_lotes=20)
+
         context = {
             'oco01': oco01,
+            'oco02': oco02,
+            'oco03': oco03,
+            'oco04': oco04,
+            'oco05': oco05,
+            'oco06': oco06,
+            'oco07': oco07,
+            'oco08': oco08,
+            'oco09': oco09,
+            'oco10': oco10,
+            'oco11': oco11,
+            'oco12': oco12,
+            'oco13': oco13,
+            'oco14': oco14,
+            'oco15': oco15,
+            'oco16': oco16,
+            'oco17': oco17,
+            'oco18': oco18,
+            'oco19': oco19,
+            'oco20': oco20,
         }
         return render(request, 'Admin/Terrenos/terrenos.html', context)
 
